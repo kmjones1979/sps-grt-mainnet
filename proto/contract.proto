@@ -1,0 +1,229 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package contract.v1;
+
+message Events {
+    repeated grt_Approval grt_approvals = 1;
+    repeated grt_MinterAdded grt_minter_addeds = 2;
+    repeated grt_MinterRemoved grt_minter_removeds = 3;
+    repeated grt_NewOwnership grt_new_ownerships = 4;
+    repeated grt_NewPendingOwnership grt_new_pending_ownerships = 5;
+    repeated grt_Transfer grt_transfers = 6;
+}
+
+message Calls {
+    repeated grt_AcceptOwnershipCall grt_call_accept_ownerships = 1;
+    repeated grt_AddMinterCall grt_call_add_minters = 2;
+    repeated grt_ApproveCall grt_call_approves = 3;
+    repeated grt_BurnCall grt_call_burns = 4;
+    repeated grt_BurnFromCall grt_call_burn_froms = 5;
+    repeated grt_DecreaseAllowanceCall grt_call_decrease_allowances = 6;
+    repeated grt_IncreaseAllowanceCall grt_call_increase_allowances = 7;
+    repeated grt_MintCall grt_call_mints = 8;
+    repeated grt_PermitCall grt_call_permits = 9;
+    repeated grt_RemoveMinterCall grt_call_remove_minters = 10;
+    repeated grt_RenounceMinterCall grt_call_renounce_minters = 11;
+    repeated grt_TransferCall grt_call_transfers = 12;
+    repeated grt_TransferFromCall grt_call_transfer_froms = 13;
+    repeated grt_TransferOwnershipCall grt_call_transfer_ownerships = 14;
+}
+
+
+message grt_Approval {
+    string evt_tx_hash = 1;
+    uint32 evt_index = 2;
+    google.protobuf.Timestamp evt_block_time = 3;
+    uint64 evt_block_number = 4;
+    bytes owner = 5;
+    bytes spender = 6;
+    string value = 7;
+}
+
+message grt_MinterAdded {
+    string evt_tx_hash = 1;
+    uint32 evt_index = 2;
+    google.protobuf.Timestamp evt_block_time = 3;
+    uint64 evt_block_number = 4;
+    bytes account = 5;
+}
+
+message grt_MinterRemoved {
+    string evt_tx_hash = 1;
+    uint32 evt_index = 2;
+    google.protobuf.Timestamp evt_block_time = 3;
+    uint64 evt_block_number = 4;
+    bytes account = 5;
+}
+
+message grt_NewOwnership {
+    string evt_tx_hash = 1;
+    uint32 evt_index = 2;
+    google.protobuf.Timestamp evt_block_time = 3;
+    uint64 evt_block_number = 4;
+    bytes from = 5;
+    bytes to = 6;
+}
+
+message grt_NewPendingOwnership {
+    string evt_tx_hash = 1;
+    uint32 evt_index = 2;
+    google.protobuf.Timestamp evt_block_time = 3;
+    uint64 evt_block_number = 4;
+    bytes from = 5;
+    bytes to = 6;
+}
+
+message grt_Transfer {
+    string evt_tx_hash = 1;
+    uint32 evt_index = 2;
+    google.protobuf.Timestamp evt_block_time = 3;
+    uint64 evt_block_number = 4;
+    bytes from = 5;
+    bytes to = 6;
+    string value = 7;
+}
+
+message grt_AcceptOwnershipCall {
+    string call_tx_hash = 1;
+    google.protobuf.Timestamp call_block_time = 2;
+    uint64 call_block_number = 3;
+    uint64 call_ordinal = 4;
+    bool call_success = 5;
+}
+
+message grt_AddMinterCall {
+    string call_tx_hash = 1;
+    google.protobuf.Timestamp call_block_time = 2;
+    uint64 call_block_number = 3;
+    uint64 call_ordinal = 4;
+    bool call_success = 5;
+    bytes u_account = 6;
+}
+
+message grt_ApproveCall {
+    string call_tx_hash = 1;
+    google.protobuf.Timestamp call_block_time = 2;
+    uint64 call_block_number = 3;
+    uint64 call_ordinal = 4;
+    bool call_success = 5;
+    bytes spender = 6;
+    string amount = 7;
+    bool output_param0 = 8;
+}
+
+message grt_BurnCall {
+    string call_tx_hash = 1;
+    google.protobuf.Timestamp call_block_time = 2;
+    uint64 call_block_number = 3;
+    uint64 call_ordinal = 4;
+    bool call_success = 5;
+    string amount = 6;
+}
+
+message grt_BurnFromCall {
+    string call_tx_hash = 1;
+    google.protobuf.Timestamp call_block_time = 2;
+    uint64 call_block_number = 3;
+    uint64 call_ordinal = 4;
+    bool call_success = 5;
+    bytes account = 6;
+    string amount = 7;
+}
+
+message grt_DecreaseAllowanceCall {
+    string call_tx_hash = 1;
+    google.protobuf.Timestamp call_block_time = 2;
+    uint64 call_block_number = 3;
+    uint64 call_ordinal = 4;
+    bool call_success = 5;
+    bytes spender = 6;
+    string subtracted_value = 7;
+    bool output_param0 = 8;
+}
+
+message grt_IncreaseAllowanceCall {
+    string call_tx_hash = 1;
+    google.protobuf.Timestamp call_block_time = 2;
+    uint64 call_block_number = 3;
+    uint64 call_ordinal = 4;
+    bool call_success = 5;
+    bytes spender = 6;
+    string added_value = 7;
+    bool output_param0 = 8;
+}
+
+message grt_MintCall {
+    string call_tx_hash = 1;
+    google.protobuf.Timestamp call_block_time = 2;
+    uint64 call_block_number = 3;
+    uint64 call_ordinal = 4;
+    bool call_success = 5;
+    bytes u_to = 6;
+    string u_amount = 7;
+}
+
+message grt_PermitCall {
+    string call_tx_hash = 1;
+    google.protobuf.Timestamp call_block_time = 2;
+    uint64 call_block_number = 3;
+    uint64 call_ordinal = 4;
+    bool call_success = 5;
+    bytes u_owner = 6;
+    bytes u_spender = 7;
+    string u_value = 8;
+    string u_deadline = 9;
+    uint64 u_v = 10;
+    bytes u_r = 11;
+    bytes u_s = 12;
+}
+
+message grt_RemoveMinterCall {
+    string call_tx_hash = 1;
+    google.protobuf.Timestamp call_block_time = 2;
+    uint64 call_block_number = 3;
+    uint64 call_ordinal = 4;
+    bool call_success = 5;
+    bytes u_account = 6;
+}
+
+message grt_RenounceMinterCall {
+    string call_tx_hash = 1;
+    google.protobuf.Timestamp call_block_time = 2;
+    uint64 call_block_number = 3;
+    uint64 call_ordinal = 4;
+    bool call_success = 5;
+}
+
+message grt_TransferCall {
+    string call_tx_hash = 1;
+    google.protobuf.Timestamp call_block_time = 2;
+    uint64 call_block_number = 3;
+    uint64 call_ordinal = 4;
+    bool call_success = 5;
+    bytes recipient = 6;
+    string amount = 7;
+    bool output_param0 = 8;
+}
+
+message grt_TransferFromCall {
+    string call_tx_hash = 1;
+    google.protobuf.Timestamp call_block_time = 2;
+    uint64 call_block_number = 3;
+    uint64 call_ordinal = 4;
+    bool call_success = 5;
+    bytes sender = 6;
+    bytes recipient = 7;
+    string amount = 8;
+    bool output_param0 = 9;
+}
+
+message grt_TransferOwnershipCall {
+    string call_tx_hash = 1;
+    google.protobuf.Timestamp call_block_time = 2;
+    uint64 call_block_number = 3;
+    uint64 call_ordinal = 4;
+    bool call_success = 5;
+    bytes u_new_governor = 6;
+}
